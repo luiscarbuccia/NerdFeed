@@ -10,9 +10,14 @@
 
 @interface CoursesTableViewController ()
 
+@property (nonatomic) NSURLSession *session;
+@property (nonatomic, strong) NSArray *courses;
+
 @end
 
 @implementation CoursesTableViewController
+
+#pragma mark - View Controller Life Cycle
 
 - (void)viewDidLoad
 {
@@ -23,35 +28,81 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self fetchFeed];
 }
 
+//- (instancetype) initWithStyle:(UITableViewStyle)style
+//{
+//    // create NSURLSession object
+//    
+//    self = [super initWithStyle:style];
+//    if (self)
+//    {
+//        self.navigationItem.title = @"BNR Courses";
+//        
+//        [self fetchFeed];
+//        
+//    }
+//    
+//    return self;
+//}
+
+#pragma mark - Methods
+
+- (void) fetchFeed
+{
+    // create an NSURLRequest that connects to bookapi.bignerdranch.com and asks for the list of courses
+    NSString *requestString = @"http://bookapi.bignerdranch.com/courses.json";
+    NSURL *url = [NSURL URLWithString:requestString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.session = [NSURLSession sessionWithConfiguration:configuration
+                                                 delegate:nil
+                                            delegateQueue:nil];
+    
+    // use NSURLSession to create an NSURLSessionTask that transfers request to the server
+    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                       options:0
+                                                                         error:nil];
+        self.courses = jsonDictionary[@"courses"];
+        
+        // get main queue
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+    [task resume];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.courses count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
+    NSDictionary *course = self.courses[indexPath.row];
+    cell.textLabel.text = course[@"title"];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
