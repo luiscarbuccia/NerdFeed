@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Courses Table View Controller-->
+        <!--Courses Table View Controller - BNR Courses-->
         <scene sceneID="8iy-GL-RUB">
             <objects>
                 <tableViewController id="m1g-kC-6xh" customClass="CoursesTableViewController" sceneMemberID="viewController">
@@ -27,7 +27,7 @@
                             <outlet property="delegate" destination="m1g-kC-6xh" id="u2Y-mq-lgf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="GHn-yN-MmQ"/>
+                    <navigationItem key="navigationItem" title="BNR Courses" id="GHn-yN-MmQ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8p-dd-qjF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

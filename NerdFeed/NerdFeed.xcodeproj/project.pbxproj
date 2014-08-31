@@ -21,6 +21,7 @@
 		841B1F6619B24B19000387BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 841B1F6419B24B19000387BE /* InfoPlist.strings */; };
 		841B1F6819B24B19000387BE /* NerdFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B1F6719B24B19000387BE /* NerdFeedTests.m */; };
 		841B1F7419B24BD5000387BE /* CoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B1F7319B24BD5000387BE /* CoursesTableViewController.m */; };
+		841B1F7819B3A091000387BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B1F7719B3A091000387BE /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		841B1F6719B24B19000387BE /* NerdFeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NerdFeedTests.m; sourceTree = "<group>"; };
 		841B1F7219B24BD5000387BE /* CoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesTableViewController.h; sourceTree = "<group>"; };
 		841B1F7319B24BD5000387BE /* CoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesTableViewController.m; sourceTree = "<group>"; };
+		841B1F7619B3A091000387BE /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		841B1F7719B3A091000387BE /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 		841B1F7519B24BD9000387BE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				841B1F7619B3A091000387BE /* WebViewController.h */,
+				841B1F7719B3A091000387BE /* WebViewController.m */,
 				841B1F7219B24BD5000387BE /* CoursesTableViewController.h */,
 				841B1F7319B24BD5000387BE /* CoursesTableViewController.m */,
 			);
@@ -268,6 +273,7 @@
 				841B1F7419B24BD5000387BE /* CoursesTableViewController.m in Sources */,
 				841B1F4D19B24B19000387BE /* AppDelegate.m in Sources */,
 				841B1F4919B24B19000387BE /* main.m in Sources */,
+				841B1F7819B3A091000387BE /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
