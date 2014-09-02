@@ -33,7 +33,7 @@
 {
     _URL = URL;
 
-    if (!_URL)
+    if (_URL)
     {
         NSURLRequest *request =[NSURLRequest requestWithURL:_URL];
         [(UIWebView *)self.view loadRequest:request];
