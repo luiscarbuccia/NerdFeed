@@ -7,11 +7,14 @@
 //
 
 #import "CoursesTableViewController.h"
+#import "WebViewController.h"
 
 @interface CoursesTableViewController ()
 
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic, strong) NSArray *courses;
+
+@property (nonatomic, strong) WebViewController *webViewController;
 
 @end
 
@@ -30,6 +33,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self fetchFeed];
+    self.webViewController = [[WebViewController alloc]init];
 }
 
 //- (instancetype) initWithStyle:(UITableViewStyle)style
@@ -103,6 +107,19 @@
     return cell;
 }
 
+#pragma mark - Table View delegates
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *course = self.courses[indexPath.row];
+    NSURL *URL = [NSURL URLWithString:course[@"url"]];
+    
+    NSLog(@"%@", URL); 
+    
+    self.webViewController.title = course[@"title"];
+    self.webViewController.URL = URL;
+    [self.navigationController pushViewController:self.webViewController animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.
