@@ -32,7 +32,7 @@
 - (void)setURL:(NSURL *)URL
 {
     _URL = URL;
-    
+
     if (!_URL)
     {
         NSURLRequest *request =[NSURLRequest requestWithURL:_URL];
