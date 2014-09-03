@@ -9,12 +9,12 @@
 #import "CoursesTableViewController.h"
 #import "WebViewController.h"
 
-@interface CoursesTableViewController () <NSURLSessionDataDelegate>
+@interface CoursesTableViewController () <NSURLSessionDataDelegate, UISplitViewControllerDelegate>
 
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic, strong) NSArray *courses;
 
-@property (nonatomic, strong) WebViewController *webViewController;
+//@property (nonatomic, strong) WebViewController *webViewController;
 
 @end
 
@@ -33,7 +33,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self fetchFeed];
-    self.webViewController = [[WebViewController alloc]init];
+//    self.webViewController = [[WebViewController alloc]init];
 }
 
 //- (instancetype) initWithStyle:(UITableViewStyle)style
@@ -114,9 +114,13 @@
     NSDictionary *course = self.courses[indexPath.row];
     NSURL *URL = [NSURL URLWithString:course[@"url"]];
     
-    self.webViewController.title = course[@"title"];
-    self.webViewController.URL = URL;
-    [self.navigationController pushViewController:self.webViewController animated:YES];
+//    id detail = self.splitViewController.viewControllers[1];
+
+//    self.webViewController.title = course[@"title"];
+//    self.webViewController.URL = URL;
+//    [self.navigationController pushViewController:self.webViewController animated:YES];
+    
+    [self performSegueWithIdentifier:@"toWebView" sender:URL];
 }
 
 
@@ -133,7 +137,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
 }
 
-
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -173,7 +180,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -181,7 +188,13 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"toWebView"])
+    {
+        WebViewController *webVC = segue.destinationViewController;
+        webVC.URL = sender;
+    }
 }
-*/
+
 
 @end

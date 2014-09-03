@@ -28,10 +28,42 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="BNR Courses" id="GHn-yN-MmQ"/>
+                    <connections>
+                        <segue destination="O7u-Q2-p2q" kind="push" identifier="toWebView" id="NQ5-g7-ON8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8p-dd-qjF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="89"/>
+            <point key="canvasLocation" x="-4663" y="-24"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="nB5-nb-m8r">
+            <objects>
+                <viewController id="O7u-Q2-p2q" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="05N-gk-Af9"/>
+                        <viewControllerLayoutGuide type="bottom" id="aI7-x9-dKf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="598-sA-gOR">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cH2-CO-8hY">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KbD-EI-Mau"/>
+                    <connections>
+                        <outlet property="webView" destination="cH2-CO-8hY" id="J2O-nw-mH3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qag-zK-dzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3796" y="-24"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WKe-iE-h5g">
@@ -49,7 +81,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic3-KL-fad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37" y="89"/>
+            <point key="canvasLocation" x="-5565" y="-24"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -8,7 +8,9 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()
+@interface WebViewController () <UISplitViewControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -16,18 +18,31 @@
 
 #pragma mark - View Controller Life Cycle
 
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    // if an URL has been set, load web page
+    if (_URL)
+    {
+        NSURLRequest *request =[NSURLRequest requestWithURL:_URL];
+        [self.webView loadRequest:request];
+    }
 }
 
-- (void) loadView
-{
-    UIWebView *webView = [[UIWebView alloc] init];
-    webView.scalesPageToFit = YES;
-    self.view = webView;
-}
+//- (void) loadView
+//{
+//    UIWebView *webView = [[UIWebView alloc] init];
+//    webView.scalesPageToFit = YES;
+//    self.view = webView;
+//}
 
 - (void)setURL:(NSURL *)URL
 {
@@ -36,8 +51,13 @@
     if (_URL)
     {
         NSURLRequest *request =[NSURLRequest requestWithURL:_URL];
-        [(UIWebView *)self.view loadRequest:request];
+        [self.webView loadRequest:request];
     }
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
 }
 
 /*
