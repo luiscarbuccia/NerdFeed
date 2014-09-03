@@ -114,13 +114,15 @@
     NSDictionary *course = self.courses[indexPath.row];
     NSURL *URL = [NSURL URLWithString:course[@"url"]];
     
-//    id detail = self.splitViewController.viewControllers[1];
-
+    id detail = self.splitViewController.viewControllers[1];
+    
+    [self prepareWebViewController:detail toLaunchURL:URL]; 
+    
 //    self.webViewController.title = course[@"title"];
 //    self.webViewController.URL = URL;
 //    [self.navigationController pushViewController:self.webViewController animated:YES];
     
-    [self performSegueWithIdentifier:@"toWebView" sender:URL];
+//    [self performSegueWithIdentifier:@"toWebView" sender:URL];
 }
 
 
@@ -182,6 +184,11 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 
 #pragma mark - Navigation
+
+- (void)prepareWebViewController:(WebViewController *)webVC toLaunchURL:(NSURL *)URL
+{
+    webVC.URL = URL;
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
