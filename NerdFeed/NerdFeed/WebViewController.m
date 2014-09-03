@@ -21,7 +21,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    
+    self.splitViewController.delegate = self;
 }
 
 - (void)viewDidLoad
@@ -67,7 +67,7 @@
 
 - (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)master inOrientation:(UIInterfaceOrientation)orientation
 {
-    return NO;
+    return UIInterfaceOrientationIsPortrait(orientation);
 }
 
 - (void)splitViewController:(UISplitViewController *)svc
@@ -77,9 +77,16 @@
 {
     // if this bar button item doesn't have a title, it will not appear
     barButtonItem.title = @"Courses";
-    
+
     // take this bar button item and put it on the left side of the nav item
-    self.navigationItem.leftBarButtonItem = barButtonItem; 
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    
 }
 
 /*
