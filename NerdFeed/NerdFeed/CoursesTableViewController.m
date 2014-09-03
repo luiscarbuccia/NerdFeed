@@ -115,8 +115,11 @@
     NSURL *URL = [NSURL URLWithString:course[@"url"]];
     
     id detail = self.splitViewController.viewControllers[1];
-    
-    [self prepareWebViewController:detail toLaunchURL:URL]; 
+
+    if (detail)
+        [self prepareWebViewController:detail toLaunchURL:URL];
+    else
+        [self performSegueWithIdentifier:@"toWebView" sender:URL];
     
 //    self.webViewController.title = course[@"title"];
 //    self.webViewController.URL = URL;

@@ -21,6 +21,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    
 }
 
 - (void)viewDidLoad
@@ -55,9 +56,23 @@
     }
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+#pragma mark - SplitViewController Delegates
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)master inOrientation:(UIInterfaceOrientation)orientation
 {
     return NO;
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem
+       forPopoverController:(UIPopoverController *)pc
+{
+    // if this bar button item doesn't have a title, it will not appear
+    barButtonItem.title = @"Courses";
+    
+    // take this bar button item and put it on the left side of the nav item
+    self.navigationItem.leftBarButtonItem = barButtonItem; 
 }
 
 /*
