@@ -38,6 +38,13 @@
     }
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationItem.title = self.title; 
+}
+
 //- (void) loadView
 //{
 //    UIWebView *webView = [[UIWebView alloc] init];

@@ -115,9 +115,10 @@
     NSURL *URL = [NSURL URLWithString:course[@"url"]];
     
     id detail = self.splitViewController.viewControllers[1];
-
+    if ([detail isKindOfClass:[UINavigationController class]])
+        detail = [((UINavigationController *)detail).viewControllers firstObject]; 
     if (detail)
-        [self prepareWebViewController:detail toLaunchURL:URL];
+        [self prepareWebViewController:detail toLaunchURL:URL navItemTitle:course[@"title"]];
     else
         [self performSegueWithIdentifier:@"toWebView" sender:URL];
     
@@ -188,9 +189,11 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 #pragma mark - Navigation
 
-- (void)prepareWebViewController:(WebViewController *)webVC toLaunchURL:(NSURL *)URL
+- (void)prepareWebViewController:(WebViewController *)webVC
+                     toLaunchURL:(NSURL *)URL navItemTitle:(NSString *)title
 {
     webVC.URL = URL;
+    webVC.title = title; 
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
