@@ -29,7 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
     // if an URL has been set, load web page
     if (_URL)
     {
@@ -44,13 +43,6 @@
     
     self.navigationItem.title = self.title; 
 }
-
-//- (void) loadView
-//{
-//    UIWebView *webView = [[UIWebView alloc] init];
-//    webView.scalesPageToFit = YES;
-//    self.view = webView;
-//}
 
 - (void)setURL:(NSURL *)URL
 {
@@ -86,7 +78,7 @@
      willShowViewController:(UIViewController *)aViewController
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 /*
